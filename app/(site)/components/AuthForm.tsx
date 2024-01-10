@@ -5,7 +5,6 @@ import Input from "@/app/components/inputs/input";
 import { useCallback, useState } from "react";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import AuthSocialButton from "./AuthSocialButton";
-import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -54,13 +53,7 @@ const AuthForm = () => {
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* Here we need to wrap the onSubmit function into handleSubmit because we want the data of the form*/}
           {variant === "REGISTER" && (
-            <Input
-              id="name"
-              label="Name"
-              register={register}
-              errors={errors}
-              disabled={isLoading}
-            />
+            <Input id="name" label="Name" register={register} errors={errors} />
           )}
 
           <Input
@@ -69,7 +62,6 @@ const AuthForm = () => {
             type="email"
             register={register}
             errors={errors}
-            disabled={isLoading}
           />
 
           <Input
@@ -78,7 +70,6 @@ const AuthForm = () => {
             type="password"
             register={register}
             errors={errors}
-            disabled={isLoading}
           />
 
           <div>
@@ -102,26 +93,7 @@ const AuthForm = () => {
           </div>
 
           <div className="mt-6 flex gap-2">
-            <AuthSocialButton
-              icon={BsGithub}
-              onClick={() => socialAction("github")}
-            />
-            <AuthSocialButton
-              icon={BsGoogle}
-              onClick={() => socialAction("google")}
-            />
-          </div>
-        </div>
-
-        <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-gray-500">
-          <div>
-            {variant === "LOGIN"
-              ? "New to Messenger?"
-              : "Already have an account?"}
-          </div>
-
-          <div className="underline cursor-pointer" onClick={toggleVariant}>
-            {variant === "LOGIN" ? "Create an account" : "Login"}
+            <AuthSocialButton />
           </div>
         </div>
       </div>
